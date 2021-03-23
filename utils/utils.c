@@ -6,7 +6,7 @@
 /*   By: jgiron <jgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 23:44:27 by jgiron            #+#    #+#             */
-/*   Updated: 2021/03/23 01:09:47 by jgiron           ###   ########.fr       */
+/*   Updated: 2021/03/23 16:48:44 by jgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,21 +60,25 @@ int		cmp(char *s1, char *s2)
 	return (s1[i] == s2[i]);
 }
 
-void	print_stack(t_stack *a, t_stack *b)
+int	print_stack(t_stack *a, t_stack *b)
 {
-	printf("_______   _______\n");
+	int ret;
+
+	ret = printf("_______   _______\n");
+//	ret = printf("\e[1;1H\e[2J_______   _______\n");
 	while (a || b)
 	{
 		if (a && b)
-			printf("| %3d |   | %3d |\n", a->value, b->value);
+			ret += printf("| %3d |   | %3d |\n", a->value, b->value);
 		if (!a && b)
-			printf("|     |   | %3d |\n", b->value);
+			ret += printf("|     |   | %3d |\n", b->value);
 		if (a && !b)
-			printf("| %3d |   |     |\n", a->value);
+			ret += printf("| %3d |   |     |\n", a->value);
 		if (a)
 			a = a->next;
 		if (b)
 			b = b->next;
 	}
-	printf("|_____|   |_____|\n");
+	ret += printf("|_____|   |_____|\n");
+	return (ret);
 }

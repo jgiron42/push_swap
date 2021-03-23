@@ -6,7 +6,7 @@
 /*   By: jgiron <jgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 00:21:35 by jgiron            #+#    #+#             */
-/*   Updated: 2021/03/23 01:33:07 by jgiron           ###   ########.fr       */
+/*   Updated: 2021/03/23 12:14:13 by jgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,13 @@ void	reverse_rotate(t_stack **s)
 	}
 }
 
-int 	check(t_stack s)
+int 	check(t_stack *s, t_stack *b)
 {
-	if (!s.next)
+	if (b)
+		return (0);
+	if (!s->next)
 		return (1);
-	if (s.value < s.next->value)
-		return (check(*s.next));
+	if (s->value < s->next->value)
+		return (check(s->next, b));
 	return (0);
 }

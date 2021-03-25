@@ -1,0 +1,101 @@
+A <- X * A
+
+swap:
+0 1 0 0 0 ...
+1 0 0 0 0
+0 0 1 0 0
+0 0 0 1 0
+0 0 0 0 1
+   ...    ...
+
+reverse rotate:
+0 0 0 0 ... 1
+1 0 0 0     0
+0 1 0 0     0
+0 0 1 0     0 
+0 0 0 1     0
+     ...
+
+rotate:
+0 1 0 0 0
+0 0 1 0 0 
+0 0 0 1 0 ...
+0 0 0 0 1
+   ...
+1 0 0 0 0
+
+
+push B:
+B <- X2 * B + X3 * A
+A <- X1 * A
+
+X1: 
+0 1 0 0 0
+0 0 1 0 0
+0 0 0 1 0
+0 0 0 0 1
+
+X2:
+0 0 0 0 0
+1 0 0 0 0
+0 1 0 0 0
+0 0 1 0 0
+0 0 0 1 0
+0 0 0 0 1
+
+X3:
+1 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+
+
+
+a		
+b	
+c	
+d	
+e	
+f	
+g	
+h
+
+a	e
+b	f
+c	g
+d	h	
+
+
+n + 2 * (n/2 + (n/2 - 1) + (n/2 - 2) + ... + 1)
+=   n   +    n    + (n - 0  + n - 2 + n - 4 + ... + n - (n - 2) + n - (n - 0))
+  pb all   all pa     max rotates
+=  n    +    n    + (n ^ 2) / 2 + SIGMA(k, 0 -> n, k = k + 2){ k }
+= n + n + n^2 / 2 + n^2 / 4
+= 2 * n + (3n^2) / 4
+= (n * (8 + 3n)) / 4
+
+
+	0 +   2   +   4   + ... + n - 4 + n - 2 + n
++	n + n - 2 + n - 4 + ... +   4   +   2   + 0
+=	n +   n   +   n   + ... +   n   +   n   + n
+=	n * n / 2
+n^2 /4
+
+n : push
+n * (1 - q) : operations de rotations max pour le chunkage (avec seulement des rotate)
+((n^2/q) - n) / 2                                                                                                                            SIGMA(i = 0, i < n / q, i++){n / q - i} : operations pour un chunk remettre un chunk dans a
+
+n + n * (1 - q) + ((n^2/q) - n) / 2
+o = n * (q) + ((n^2/q) - n) / 2
+
+
+x - x^2 / (4 * y^2) = 0
+x^2/(4 * y^2) = x
+x = 4  * y^2
+y = sqrt(x/4)
+
+
+donc le nombre de chunk doit etre egal a la racine carre de la taille de la liste divisee par deux
+

@@ -6,7 +6,7 @@
 /*   By: jgiron <jgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 12:01:50 by jgiron            #+#    #+#             */
-/*   Updated: 2021/03/25 23:49:11 by jgiron           ###   ########.fr       */
+/*   Updated: 2021/03/26 13:57:10 by jgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,9 @@ int		stack_length(t_stack *s)
 {
 	int ret;
 
-	ret = 0;
+	ret = s && s->next;
 	while (s && s->next)
 	{
-		printf("%p\n", s);
 		s = s->next;
 		ret++;
 	}
@@ -166,7 +165,6 @@ int		main(int argc, char **argv)
 
 	if (!(stack_a = parse(argc, argv)))
 		return (1);
-	while(1);
 	stack_b = NULL;
 	solver3(stack_a, stack_b);
 	free_stack(stack_a);

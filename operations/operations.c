@@ -6,11 +6,11 @@
 /*   By: jgiron <jgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 00:21:35 by jgiron            #+#    #+#             */
-/*   Updated: 2021/03/23 12:14:13 by jgiron           ###   ########.fr       */
+/*   Updated: 2021/03/25 20:44:47 by jgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "../includes/push_swap.h"
 
 void	swap(t_stack **stack)
 {

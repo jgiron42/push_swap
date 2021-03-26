@@ -6,11 +6,11 @@
 /*   By: jgiron <jgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 23:44:27 by jgiron            #+#    #+#             */
-/*   Updated: 2021/03/23 16:48:44 by jgiron           ###   ########.fr       */
+/*   Updated: 2021/03/25 22:34:16 by jgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "../includes/push_swap.h"
 
 int		ft_strlen(char *str)
 {
@@ -80,5 +80,29 @@ int	print_stack(t_stack *a, t_stack *b)
 			b = b->next;
 	}
 	ret += printf("|_____|   |_____|\n");
+	return (ret);
+}
+
+t_stack		*clone_stack(t_stack *s)
+{
+	t_stack	*ret;
+	t_stack	*tmp;
+
+	if (!(ret = malloc(sizeof(t_stack))))
+		exit(1);
+	tmp = ret;
+	while (s)
+	{
+		tmp->value = s->value;
+		s = s->next;
+		if (s)
+		{
+			if (!(tmp->next = malloc(sizeof(t_stack))))
+				exit(1);
+		}
+		else
+			tmp->next = NULL;
+		tmp = tmp->next;
+	}
 	return (ret);
 }

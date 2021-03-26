@@ -6,19 +6,51 @@
 /*   By: jgiron <jgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 12:01:50 by jgiron            #+#    #+#             */
-/*   Updated: 2021/03/23 17:09:03 by jgiron           ###   ########.fr       */
+/*   Updated: 2021/03/25 23:49:11 by jgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
+
+
+
+void	sort_stack(t_stack *s)
+{
+
+	int	is_sorted;
+	int i;
+	int len_a;
+
+	i = 0;
+	len_a = stack_length(s);
+	is_sorted = 1;
+	while (s && s->next) {
+		if (i % len_a == len_a - 1)
+		{
+			if (is_sorted)
+				break;
+			is_sorted = 1;
+		}
+		else if (s->value > s->next->value && i % len_a != len_a - 1)
+		{
+			swap(&s);
+			is_sorted = 0;
+		}
+		rotate(&s);
+		i++;
+	}
+	while (s->value > get_last(s)->value)
+		reverse_rotate(&s);
+}
 
 int		stack_length(t_stack *s)
 {
 	int ret;
 
 	ret = 0;
-	while (s)
+	while (s && s->next)
 	{
+		printf("%p\n", s);
 		s = s->next;
 		ret++;
 	}
@@ -134,8 +166,9 @@ int		main(int argc, char **argv)
 
 	if (!(stack_a = parse(argc, argv)))
 		return (1);
+	while(1);
 	stack_b = NULL;
-	solver1(stack_a, stack_b);
+	solver3(stack_a, stack_b);
 	free_stack(stack_a);
 	free_stack(stack_b);
 }

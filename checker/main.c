@@ -6,11 +6,11 @@
 /*   By: jgiron <jgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 21:55:21 by jgiron            #+#    #+#             */
-/*   Updated: 2021/03/23 17:00:59 by jgiron           ###   ########.fr       */
+/*   Updated: 2021/03/25 20:44:47 by jgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "../includes/push_swap.h"
 
 int 	compute(t_stack **stack_a, t_stack **stack_b, char *line)
 {

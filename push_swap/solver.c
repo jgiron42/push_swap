@@ -6,7 +6,7 @@
 /*   By: jgiron <jgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 17:12:01 by jgiron            #+#    #+#             */
-/*   Updated: 2021/03/26 17:34:42 by jgiron           ###   ########.fr       */
+/*   Updated: 2021/03/27 17:00:49 by jgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,18 +67,20 @@ void	sort5(t_stack **a, t_stack **b)
 {
 	int i;
 
-	push(b, a);
-	push(b, a);
-	printf("pb\npb\n");
+	while (stack_length(*a) > 3)
+	{
+		push(b, a);
+		printf("pb\n");
+	}
 	sort3(a, 'a');
 	i = 0;
 	while (*b)
 	{
-		if ((*b)->value < (*a)->value || i % (3 + !!((*b)->next)) == (3 + !!((*b)->next)) - 1)
+		if ((*b)->value < (*a)->value || i % (3 + !((*b)->next)) == 0)
 		{
-			if (i % (3 + !!((*b)->next)) == (3 + !!((*b)->next)) - 1)
+			if ((*b)->value > (*a)->value)
 			{
-				i %= 3+ !!((*b)->next);
+				i %= 3+ !((*b)->next);
 				push(a, b);
 				printf("pa\n");
 				rotate(a);
@@ -96,7 +98,6 @@ void	sort5(t_stack **a, t_stack **b)
 			printf("ra\n");
 			i++;
 		}
-		print_stack(*a,*b);
 	}
 	while (--i >= 0)
 	{
@@ -228,12 +229,20 @@ void	solver3(t_stack *a, t_stack *b)
 	int		chunk_number;
 	t_stack	*sorted_stack;
 
-//	sort3(&a, 'a');
-	sort5(&a, &b);
-	print_stack(a, b);
-//	chunk_number = get_quantile_number(stack_length(a));
-//	sorted_stack = clone_stack(a);
-//	sort_stack(sorted_stack);
-//	push_a_to_b(&a, &b, sorted_stack, chunk_number);
-//	push_quantiles_to_a(&a, &b, sorted_stack, chunk_number);
+	if (check(a, b))
+		return ;
+	if (stack_length(a) == 2)
+		printf("sa\n");
+	else if (stack_length(a) == 3)
+		sort3(&a, 'a');
+	else if (stack_length(a) == 5)
+		sort5(&a, &b);
+	else
+	{
+		chunk_number = get_quantile_number(stack_length(a));
+		sorted_stack = clone_stack(a);
+		sort_stack(sorted_stack);
+		push_a_to_b(&a, &b, sorted_stack, chunk_number);
+		push_quantiles_to_a(&a, &b, sorted_stack, chunk_number);
+	}
 }

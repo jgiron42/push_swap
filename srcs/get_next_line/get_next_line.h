@@ -23,7 +23,7 @@
 size_t			ft_gnl_strlen(const char *str);
 char			*ft_gnl_strjoin(const char *s1, char *s2, int ret);
 char			*ft_gnl_strchr(char *s, int c);
-int				get_next_line(int fd, char **line);
+int				get_next_line(int fd, char **line, int free_flag);
 char			*ft_gnl_linedup(char *tmp, char *buff);
 char			*ft_gnl_strdup(char *str);
 

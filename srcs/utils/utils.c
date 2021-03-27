@@ -6,13 +6,13 @@
 /*   By: jgiron <jgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 23:44:27 by jgiron            #+#    #+#             */
-/*   Updated: 2021/03/25 22:34:16 by jgiron           ###   ########.fr       */
+/*   Updated: 2021/03/27 22:28:11 by jgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int		ft_strlen(char *str)
+int			ft_strlen(char *str)
 {
 	char *tmp;
 
@@ -24,14 +24,14 @@ int		ft_strlen(char *str)
 	return ((int)((intptr_t)tmp - (intptr_t)str));
 }
 
-char *ft_strjoin(char *s1, char *s2)
+char		*ft_strjoin(char *s1, char *s2)
 {
 	char	*ret;
-	int 	i;
+	int		i;
 
 	i = -1;
 	if (!(ret = malloc(ft_strlen(s1) + ft_strlen(s2) + 1)))
-		exit (1);
+		exit(1);
 	while (s1 && s1[++i])
 		ret[i] = s1[i];
 	i = -1;
@@ -41,16 +41,7 @@ char *ft_strjoin(char *s1, char *s2)
 	return (ret);
 }
 
-char	*ft_strjoinf1(char *s1, char *s2)
-{
-	char *ret;
-
-	ret = ft_strjoin(s1, s2);
-	free(s1);
-	return (ret);
-}
-
-int		cmp(char *s1, char *s2)
+int			cmp(char *s1, char *s2)
 {
 	int	i;
 
@@ -60,12 +51,11 @@ int		cmp(char *s1, char *s2)
 	return (s1[i] == s2[i]);
 }
 
-int	print_stack(t_stack *a, t_stack *b)
+int			print_stack(t_stack *a, t_stack *b)
 {
 	int ret;
 
 	ret = printf("_______   _______\n");
-//	ret = printf("\e[1;1H\e[2J_______   _______\n");
 	while (a || b)
 	{
 		if (a && b)

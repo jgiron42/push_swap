@@ -6,14 +6,14 @@
 /*   By: jgiron <jgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 22:07:09 by jgiron            #+#    #+#             */
-/*   Updated: 2021/03/25 20:44:47 by jgiron           ###   ########.fr       */
+/*   Updated: 2021/03/27 22:38:52 by jgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <limits.h>
 #include "../includes/push_swap.h"
 
-int 	atoi_element(int *dst, char *str)
+int		atoi_element(int *dst, char *str)
 {
 	long int ret;
 
@@ -35,14 +35,25 @@ int 	atoi_element(int *dst, char *str)
 	return (0);
 }
 
-void 	free_stack(t_stack *stack)
+void	free_stack(t_stack *stack)
 {
 	if (stack && stack->next)
 		free_stack(stack->next);
 	free(stack);
 }
 
-int 	add_element(t_stack **stack, char *element)
+int		is_in_stack(t_stack *stack, int nbr)
+{
+	while (stack)
+	{
+		if (stack->value == nbr && stack->next)
+			return (1);
+		stack = stack->next;
+	}
+	return (0);
+}
+
+int		add_element(t_stack **stack, char *element)
 {
 	t_stack	*tmp;
 
@@ -54,7 +65,8 @@ int 	add_element(t_stack **stack, char *element)
 	tmp->next->next = NULL;
 	if (!*stack)
 		*stack = tmp->next;
-	if (atoi_element(&tmp->next->value, element))
+	if (atoi_element(&tmp->next->value, element) ||
+	is_in_stack(*stack, tmp->next->value))
 	{
 		write(2, "Error\n", 6);
 		free_stack(*stack);
@@ -63,7 +75,7 @@ int 	add_element(t_stack **stack, char *element)
 	return (0);
 }
 
-t_stack *parse(int argc, char **argv)
+t_stack	*parse(int argc, char **argv)
 {
 	t_stack *ret;
 	int		i;
@@ -74,7 +86,8 @@ t_stack *parse(int argc, char **argv)
 //		if (add_element(&ret, argv[i]) == -1)
 //			return (NULL);
 	while (argv[1][++i])
-		if ((i == 0 || argv[1][i] == ' ') && add_element(&ret, argv[1] + i + (argv[1][i] == ' ')))
+		if ((i == 0 || argv[1][i] == ' ') &&
+		add_element(&ret, argv[1] + i + (argv[1][i] == ' ')))
 			return (NULL);
 	return (ret);
 }

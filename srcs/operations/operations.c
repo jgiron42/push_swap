@@ -6,7 +6,7 @@
 /*   By: jgiron <jgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 00:21:35 by jgiron            #+#    #+#             */
-/*   Updated: 2021/03/25 20:44:47 by jgiron           ###   ########.fr       */
+/*   Updated: 2021/03/27 20:00:31 by jgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	swap(t_stack **stack)
 {
 	int	tmp;
 
+	if (!*stack || !(*stack)->next)
+		return ;
 	tmp = (*stack)->value;
 	(*stack)->value = (*stack)->next->value;
 	(*stack)->next->value = tmp;
@@ -38,6 +40,8 @@ void	rotate(t_stack **s)
 {
 	t_stack	*tmp;
 
+	if (!*s || !(*s)->next)
+		return ;
 	tmp = *s;
 	while (tmp && tmp->next)
 		tmp = tmp->next;
@@ -53,6 +57,8 @@ void	reverse_rotate(t_stack **s)
 {
 	t_stack	*tmp;
 
+	if (!*s || !(*s)->next)
+		return ;
 	tmp = *s;
 	while (tmp && tmp->next->next)
 		tmp = tmp->next;
@@ -64,7 +70,7 @@ void	reverse_rotate(t_stack **s)
 	}
 }
 
-int 	check(t_stack *s, t_stack *b)
+int		check(t_stack *s, t_stack *b)
 {
 	if (b)
 		return (0);

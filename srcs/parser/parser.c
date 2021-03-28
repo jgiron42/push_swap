@@ -6,7 +6,7 @@
 /*   By: jgiron <jgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 22:07:09 by jgiron            #+#    #+#             */
-/*   Updated: 2021/03/28 14:09:36 by jgiron           ###   ########.fr       */
+/*   Updated: 2021/03/28 15:04:11 by jgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		atoi_element(int *dst, char *str)
 		str--;
 	while (*++str && *str != ' ')
 		if (*str < '0' || *str > '9' ||
-		ret * 10 + *str + 48 > (long int)INT_MAX + (*dst < 0))
+		ret * 10 + *str - 48 > (long int)INT_MAX + (*dst < 0))
 			return (1);
 		else
 			ret = ret * 10 + *str - 48;

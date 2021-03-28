@@ -6,7 +6,7 @@
 /*   By: jgiron <jgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 21:55:21 by jgiron            #+#    #+#             */
-/*   Updated: 2021/03/28 15:33:45 by jgiron           ###   ########.fr       */
+/*   Updated: 2021/03/28 15:40:18 by jgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,16 @@ int		compute(t_stack **stack_a, t_stack **stack_b, char *line)
 	return (0);
 }
 
-int		wait_for_instruction(char **line, t_stack *stack_a, t_stack *stack_b)
+int		wait_for_instruction(char **line, t_stack **stack_a, t_stack **stack_b)
 {
 	while (get_next_line(0, line, 0))
 	{
-		if (*line && **line && compute(&stack_a, &stack_b, *line))
+		if (*line && **line && compute(stack_a, stack_b, *line))
 		{
 			get_next_line(0, 0, 1);
 			free(*line);
-			free_stack(stack_a);
-			free_stack(stack_b);
+			free_stack(*stack_a);
+			free_stack(*stack_b);
 			return (1);
 		}
 		free(*line);
@@ -91,7 +91,7 @@ int		main(int argc, char **argv)
 		return (1);
 	}
 	stack_b = NULL;
-	if (wait_for_instruction(&line, stack_a, stack_b))
+	if (wait_for_instruction(&line, &stack_a, &stack_b))
 		return (1);
 	free(line);
 	printf(check(stack_a, stack_b) ? "OK\n" : "KO\n");

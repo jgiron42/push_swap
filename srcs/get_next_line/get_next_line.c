@@ -6,7 +6,7 @@
 /*   By: jgiron <jgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/07 16:06:33 by jgiron            #+#    #+#             */
-/*   Updated: 2021/03/27 21:24:43 by jgiron           ###   ########.fr       */
+/*   Updated: 2021/03/28 15:40:18 by jgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,16 @@ char	*ft_gnl_linedup(char *tmp, char *buff)
 	return (result);
 }
 
-int		get_next_line(int fd, char **line, int free_flag)
+int		get_next_line(int fd, char **line, int f)
 {
 	static char	*tmp;
 	char		*buff;
 	int			ret;
 	char		*old;
 
-	if (free_flag)
+	if ((ret = 1) && f)
 		free(tmp);
-	if ((ret = 1) && (read(fd, NULL, 0) == -1 || !line || BUFFER_SIZE < 1))
+	if (f || read(fd, NULL, 0) == -1 || !line || BUFFER_SIZE < 1)
 		return (-1);
 	if (!(buff = malloc(BUFFER_SIZE + 1)) ||
 (!tmp && (!(tmp = malloc(BUFFER_SIZE + 1)) ||

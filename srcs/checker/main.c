@@ -66,6 +66,7 @@ int		wait_for_instruction(char **line, t_stack *stack_a, t_stack *stack_b)
 	{
 		if (*line && **line && compute(&stack_a, &stack_b, *line))
 		{
+			get_next_line(0, 0, 1);
 			free(*line);
 			free_stack(stack_a);
 			free_stack(stack_b);

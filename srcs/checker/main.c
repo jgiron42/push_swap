@@ -6,7 +6,7 @@
 /*   By: jgiron <jgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 21:55:21 by jgiron            #+#    #+#             */
-/*   Updated: 2021/03/27 23:03:27 by jgiron           ###   ########.fr       */
+/*   Updated: 2021/03/28 14:25:34 by jgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int		main(int argc, char **argv)
 		return (1);
 	}
 	stack_b = NULL;
-	if (wait_for_instruction(&line, stack_b, stack_b))
+	if (wait_for_instruction(&line, stack_a, stack_b))
 		return (1);
 	free(line);
 	printf(check(stack_a, stack_b) ? "OK\n" : "KO\n");

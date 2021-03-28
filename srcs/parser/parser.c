@@ -6,7 +6,7 @@
 /*   By: jgiron <jgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 22:07:09 by jgiron            #+#    #+#             */
-/*   Updated: 2021/03/27 22:38:52 by jgiron           ###   ########.fr       */
+/*   Updated: 2021/03/28 14:09:36 by jgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		add_element(t_stack **stack, char *element)
 {
 	t_stack	*tmp;
 
-	tmp = &(t_stack){.prev = NULL, .next=*stack};
+	tmp = &(t_stack){.next=*stack};
 	while (tmp->next)
 		tmp = tmp->next;
 	if (!(tmp->next = malloc(sizeof(t_stack))))
@@ -81,13 +81,13 @@ t_stack	*parse(int argc, char **argv)
 	int		i;
 
 	ret = NULL;
-	i = -1;
-//	while (++i < argc)
-//		if (add_element(&ret, argv[i]) == -1)
-//			return (NULL);
-	while (argv[1][++i])
+	i = -1 + (argc != 2);
+	while (argc == 2 && argv[1][++i])
 		if ((i == 0 || argv[1][i] == ' ') &&
-		add_element(&ret, argv[1] + i + (argv[1][i] == ' ')))
+			add_element(&ret, argv[1] + i + (argv[1][i] == ' ')))
+			return (NULL);
+	while (argc != 2 && ++i < argc)
+		if (add_element(&ret, argv[i]) == -1)
 			return (NULL);
 	return (ret);
 }

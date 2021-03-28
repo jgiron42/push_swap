@@ -6,7 +6,7 @@
 /*   By: jgiron <jgiron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 21:55:21 by jgiron            #+#    #+#             */
-/*   Updated: 2021/03/28 14:25:34 by jgiron           ###   ########.fr       */
+/*   Updated: 2021/03/28 15:33:45 by jgiron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int		wait_for_instruction(char **line, t_stack *stack_a, t_stack *stack_b)
 	{
 		if (*line && **line && compute(&stack_a, &stack_b, *line))
 		{
-			get_next_line(0, line, 1);
 			free(*line);
 			free_stack(stack_a);
 			free_stack(stack_b);
